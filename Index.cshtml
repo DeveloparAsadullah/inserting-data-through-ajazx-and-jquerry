@@ -1,0 +1,79 @@
+﻿@model ajax_jquerry_26_nov.Models.tbl_insert
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+    <form class="form-group col-lg-4 col-sm-4" id="myform">
+
+        <label for="ques">question:</label>
+        @Html.TextBoxFor(x => x.q_tile, new { @class = "form-control", @placeholder = "enter question" })
+        <br />
+        <label for="ques">option a:</label>
+        @Html.TextBoxFor(x => x.q_opta, new { @class = "form-control", @placeholder = "entre option a" })
+        <br />
+        <label for="ques">option b:</label>
+        @Html.TextBoxFor(x => x.q_optb, new { @class = "form-control", @placeholder = "enter option b" })
+        <br />
+        <label for="ques">option c</label>
+        @Html.TextBoxFor(x => x.q_optc, new { @class = "form-control", @placeholder = "enter option c" })
+        <br />
+        <label for="ques">option d:</label>
+        @Html.TextBoxFor(x => x.q_optd, new { @class = "form-control", @placeholder = "enter option d" })
+        <br />
+        <label for="ques">correct option:</label>
+        @Html.TextBoxFor(x => x.correct_option, new { @class = "form-control", @placeholder = "enter correct option" })
+        <br />
+        <input type="reset" class="btn btn-block btn-primary" id="button" value="insert question" />
+
+
+    </form>
+</div>
+
+<div class="row" id="loader" style="display:none">
+
+    <img src="~/Content/images/green-checkbox-icon-15.jpg" class="img-responsive img-thumbnail" style="height:90px;width:20%;" />
+
+</div>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#button").click(function () {
+
+            $("#loader").show();
+
+            var alldata = $("#myform").serialize();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Home/Index",
+                data: alldata,
+                success: function (response) {
+
+                    $("#loader").hide();
+                    alert("qustion added succesfully");
+
+
+                }
+
+
+
+
+            })
+
+        })
+
+    })
+
+
+
+</script>
